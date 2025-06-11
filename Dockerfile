@@ -6,10 +6,7 @@ RUN apk add --no-cache openssl libc6-compat jq make cmake g++ bash
 # Set working directory
 WORKDIR /app
 
-# Debug: List what's in the current directory
-RUN ls -la
-
-# Try to copy everything and see what happens
+# Copy everything
 COPY . .
 
 # Debug: List what was copied
@@ -17,10 +14,6 @@ RUN ls -la
 
 # Check if key files exist
 RUN test -f package.json && echo "package.json found" || echo "package.json NOT found"
-RUN test -f turbo.json && echo "turbo.json found" || echo "turbo.json NOT found"
-
-# Only proceed if package.json exists
-RUN test -f package.json || (echo "Critical: package.json not found. Build context is empty or incorrect." && exit 1)
 
 # Install dependencies
 RUN npm ci
