@@ -1,0 +1,41 @@
+FROM node:22-alpine3.20 AS base
+
+RUN apk add --no-cache openssl libc6-compat jq make cmake g++ bash
+
+WORKDIR /app
+
+# Copy package files first for better caching
+COPY package*.json ./
+COPY turbo.json ./
+COPY apps/remix/package*.json ./apps/remix/
+COPY packages/*/package*.json ./packages/*/
+
+# Install dependencies
+RUN npm ci
+
+# Copy the rest of the application
+COPY . .
+
+# Disable husky and set environment
+ENV HUSKY 0
+ENV DOCKER_OUTPUT 1
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Build the application
+RUN npm run build
+
+# Create non-root user
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nodejs
+
+# Change ownership of the app directory
+RUN chown -R nodejs:nodejs /app
+
+USER nodejs
+
+# Copy the start script
+COPY --chown=nodejs:nodejs docker/start.sh /app/apps/remix/start.sh
+
+WORKDIR /app/apps/remix
+
+CMD ["sh", "start.sh"] 

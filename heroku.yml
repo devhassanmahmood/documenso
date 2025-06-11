@@ -1,6 +1,6 @@
 build:
   docker:
-    web: docker/Dockerfile
+    web: docker/Dockerfile.heroku
 
 run:
   web: sh start.sh
