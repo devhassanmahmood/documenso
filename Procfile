@@ -1,0 +1,1 @@
+web: cd apps/remix && npm run start 
