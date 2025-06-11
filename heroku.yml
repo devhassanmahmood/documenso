@@ -1,0 +1,6 @@
+build:
+  docker:
+    web: docker/Dockerfile
+
+run:
+  web: sh start.sh
