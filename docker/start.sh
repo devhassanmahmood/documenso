@@ -2,6 +2,8 @@
 
 set -x
 
-npx prisma migrate deploy --schema ../../packages/prisma/schema.prisma
+# npx prisma migrate deploy --schema ../../packages/prisma/schema.prisma
 
-HOSTNAME=0.0.0.0 node build/server/main.js
+# HOSTNAME=0.0.0.0 node build/server/main.js
+
+npm run d
