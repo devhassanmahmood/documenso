@@ -6,4 +6,4 @@ set -x
 
 # HOSTNAME=0.0.0.0 node build/server/main.js
 
-npm run d
+npm start
