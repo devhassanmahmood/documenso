@@ -1,6 +1,9 @@
 build:
-  docker:
-    web: Dockerfile
+  packages:
+    - nodejs
 
 run:
-  web: ./start.sh
+  web: |
+    npm i &&
+    npm run prisma:migrate-dev &&
+    npm run dev
