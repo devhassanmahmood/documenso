@@ -37,8 +37,7 @@
   },
   "packageManager": "npm@10.7.0",
   "engines": {
-    "npm": ">=10.7.0",
-    "node": ">=22.0.0"
+    "node": "22.x"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
