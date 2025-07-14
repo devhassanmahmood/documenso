@@ -1,1 +1,1 @@
-web: npm run start
+web: cd apps/remix && cross-env NODE_ENV=production node build/server/main.js 
