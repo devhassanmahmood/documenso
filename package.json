@@ -3,6 +3,7 @@
   "version": "1.12.0-rc.3",
   "scripts": {
     "build": "turbo run build",
+    "heroku-postbuild": "npm run prisma:generate && npm run build --filter=@documenso/remix",
     "dev": "turbo run dev --filter=@documenso/remix",
     "dev:remix": "turbo run dev --filter=@documenso/remix",
     "dev:docs": "turbo run dev --filter=@documenso/documentation",
@@ -37,8 +38,7 @@
   },
   "packageManager": "npm@10.7.0",
   "engines": {
-    "npm": ">=10.7.0",
-    "node": ">=22.0.0"
+    "node": "22.x"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
